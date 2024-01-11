@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,5 +24,13 @@ public class BoardService {
         Board findBoard = boardRepository.findById(boardId).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
         return new BoardResponseDto(findBoard);
+    }
+
+    public List<BoardFindAllResponseDto> getAllBoard() {
+        List<Board> boardList = boardRepository.findAll();
+
+        return boardList.stream()
+                .map(BoardFindAllResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
