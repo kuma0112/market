@@ -41,4 +41,13 @@ public class BoardService {
         Board updatedBoard = board.update(requestDto);
         return new BoardResponseDto(updatedBoard);
     }
+
+
+    public UserResponseDto deleteBoard(Long boardId) {
+        Board board = boardRepository.findById(boardId).orElseThrow(
+                ()-> new IllegalArgumentException("해당 게시글을 찾을 수 없습니다."));
+
+        boardRepository.delete(board);
+        return new UserResponseDto("삭제완료");
+    }
 }
