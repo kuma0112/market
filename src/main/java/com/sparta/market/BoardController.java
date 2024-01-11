@@ -1,10 +1,7 @@
 package com.sparta.market;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,4 +15,8 @@ public class BoardController {
         return boardService.createBoard(requestDto);
     }
 
+    @GetMapping ("/post/{id}")
+    public BoardResponseDto getBoard (@PathVariable ("id") Long boardId){
+        return boardService.getBoard(boardId);
+    }
 }

@@ -13,9 +13,13 @@ public class BoardService {
 
     // 판매 게시글 작성
     public BoardResponseDto createBoard(BoardRequestDto requestDto) {
-        log.info(requestDto.getUsername());
         Board board = boardRepository.save(new Board(requestDto));
-        log.info(board.getUsername());
         return new BoardResponseDto(board);
+    }
+
+    public BoardResponseDto getBoard(Long boardId) {
+        Board findBoard = boardRepository.findById(boardId).orElseThrow(() ->
+                new IllegalArgumentException("해당 게시글이 존재하지 않습니다."));
+        return new BoardResponseDto(findBoard);
     }
 }
