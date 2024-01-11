@@ -26,4 +26,9 @@ public class BoardController {
     public List<BoardFindAllResponseDto> getAllBoard(){
         return boardService.getAllBoard();
     }
+
+    @PutMapping("/post/{id}")
+    public BoardResponseDto updateBoard(@PathVariable("id") Long boardId, @RequestBody BoardRequestDto requestDto){
+        return boardService.updateBoard(boardId, requestDto);
+    }
 }

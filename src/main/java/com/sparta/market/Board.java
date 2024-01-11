@@ -25,4 +25,12 @@ public class Board {
         this.username = requestDto.getUsername();
     }
 
+    public Board update(BoardRequestDto requestDto){
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.price = requestDto.getPrice();
+        this.username = requestDto.getUsername();
+
+        return this;
+    }
 }

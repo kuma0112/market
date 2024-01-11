@@ -33,4 +33,12 @@ public class BoardService {
                 .map(BoardFindAllResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    public BoardResponseDto updateBoard(Long boardId, BoardRequestDto requestDto) {
+        Board board = boardRepository.findById(boardId).orElseThrow(
+                ()-> new IllegalArgumentException("해당 게시글을 찾을 수 없습니다."));
+
+        Board updatedBoard = board.update(requestDto);
+        return new BoardResponseDto(updatedBoard);
+    }
 }
